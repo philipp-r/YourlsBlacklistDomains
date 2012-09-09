@@ -8,7 +8,7 @@ It has been tested on YOURLS v1.5 and v1.5.1
 
 Current version is 1.0
 
-Contact : panthro.rafael@gmail.com
+Contact : panthro[dot]rafael[at]gmail[dot]com
 
 INSTALL :
 - In /user/plugins, create a new folder named whitelist-domains

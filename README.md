@@ -18,3 +18,7 @@ INSTALL :
 You will see in the admin section a new admin page where you can add the domain addresses to the whitelist.
 
 Enter one domain in each line, please, remove the www when adding a new domain, the code works on both.
+
+Thanks to https://github.com/LudoBoggio for the YourlsBlacklistIPs which was the base for this one:
+
+https://github.com/LudoBoggio/YourlsBlacklistIPs

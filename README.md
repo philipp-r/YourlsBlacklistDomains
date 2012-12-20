@@ -7,7 +7,7 @@ This plugin is intended to be used with YOURLS (cf. http://yourls.org)
 
 It has been tested on YOURLS v1.5.1 and YourlsBlacklistIPs v1.3
 
-Current version is 0.01
+Current version is 0.02
 
 Contact : *apelly[ at ]len[ dot ]io*
 
@@ -31,6 +31,10 @@ Thanks to https://github.com/Panthro for YourlsWhiteListDomains which was basica
 Also thanks to https://github.com/LudoBoggio for the YourlsBlacklistIPs plugin which was the base for YourlsWhiteListDomains:
 - https://github.com/LudoBoggio/YourlsBlacklistIPs
 
+Changelog
+---------
+v0.02 Cosmetic changes
+v0.01 Initial code
 ---
 
 Notice

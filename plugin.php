@@ -2,11 +2,12 @@
 /*
 Plugin Name: YourlsBlackListDomains
 Plugin URI: https://github.com/apelly/YourlsBlacklistDomains
-Description: Plugin which disallows blacklisted domains, forked from: https://github.com/Panthro/YourlsWhitelistDomains
-Version: 0.01
+Description: Plugin which disallows blacklisted domains and bans the submitters IP address. GPL v3
+Version: 0.02
 Author: apelly
 Author URI: http://len.io
-
+*/
+/*
 Copyright(c) (2012) Aaron Pelly
 
 License:
@@ -37,6 +38,8 @@ yourls_add_action( 'plugins_loaded', 'apelly_blacklist_domain_add_page' );
 function apelly_blacklist_domain_root ( $bol, $url ) {
 	$parse = parse_url($url);
 	$domain = str_ireplace('www.', '', parse_url($url, PHP_URL_HOST));
+	$domain = str_ireplace('http://', '', parse_url($url, PHP_URL_HOST));
+	$domain = str_ireplace('https://', '', parse_url($url, PHP_URL_HOST));
 	$return = false;
 	$domain_list = yourls_get_option ('apelly_blacklist_domain_list');
 	if ( $domain_list ) {
@@ -44,7 +47,7 @@ function apelly_blacklist_domain_root ( $bol, $url ) {
 		if (strpos($domain_list_display,$domain) === true) {
 
 			// Check if a YourlsBlacklistIPs is installed and active
-			if (yourls_is_active_plugin( YOURLS_PLUGINDIR .'/BlackListIP/plugin.php' ) {
+			if (yourls_is_active_plugin( YOURLS_PLUGINDIR .'/BlackListIP/plugin.php' )) {
 				// fetch the blacklisted IP addresses
 				$IP_List = yourls_get_option ('ludo_blacklist_ip_liste');
 				$IP_List = ( $IP_List ) ? ( unserialize ( $IP_List ) ):((array)NULL);
@@ -61,7 +64,9 @@ function apelly_blacklist_domain_root ( $bol, $url ) {
 			}
 
 			// stop
-			yourls_die( 'Blacklisted domain', 'Forbidden', 403 );
+			//yourls_die( 'Blacklisted domain', 'Forbidden', 403 );
+			echo "<center>Blacklisted domain.</center>";
+			die();
 		}
 	}
 	return $return;
@@ -97,9 +102,8 @@ function apelly_blacklist_domain_form () {
 		<input type="hidden" name="action" value="blacklist_domain" />
 		<input type="hidden" name="nonce" value="$nonce" />
 		
-		<p>Blacklist following domains
-		<textarea cols="60" rows="15" name="blacklist_form">$domain_list_display</textarea>
-		</p>
+		<p>Blacklist following domains</p>
+		<p><textarea cols="60" rows="15" name="blacklist_form">$domain_list_display</textarea></p>
 		
 		<p><input type="submit" value="Save" /></p>
 		</form>
@@ -113,6 +117,12 @@ function apelly_blacklist_domain_process () {
 	// Update list
 	$sent_list = serialize($_POST['blacklist_form']);
 	yourls_update_option ( 'apelly_blacklist_domain_list',$sent_list );
-	echo "Black list updated" ;
+	echo "Black list updated. New blacklist is " ;
+	if ( count ( $IPList ) == 0 )
+		echo "sent_list.";
+	else {
+		echo ":<BR />";
+		foreach ($sent_list as $value) echo $value."<BR />";
+	}
 }
 ?>

@@ -28,7 +28,7 @@ License:
 // No direct call
 if( !defined( 'YOURLS_ABSPATH' ) ) die();
 
-// Hook the custom function into the 'pre_check_domain_flood' event
+// Hook the custom function into the 'shunt_add_new_link' event
 yourls_add_filter( 'shunt_add_new_link', 'apelly_blacklist_domain_root' );
 
 // Hook the admin page into the 'plugins_loaded' event
@@ -36,37 +36,38 @@ yourls_add_action( 'plugins_loaded', 'apelly_blacklist_domain_add_page' );
 
 // Get blacklisted domains from YOURLS options feature and compare with current domain address
 function apelly_blacklist_domain_root ( $bol, $url ) {
-	$parse = parse_url($url);
-	$domain = str_ireplace('www.', '', parse_url($url, PHP_URL_HOST));
-	$domain = str_ireplace('http://', '', parse_url($url, PHP_URL_HOST));
-	$domain = str_ireplace('https://', '', parse_url($url, PHP_URL_HOST));
 	$return = false;
 	$domain_list = yourls_get_option ('apelly_blacklist_domain_list');
 	if ( $domain_list ) {
-		$domain_list_display = unserialize ( $domain_list );
-		if (strpos($domain_list_display,$domain) === true) {
+		$domain_list = unserialize ( $domain_list );
+		foreach($domain_list as $blacklisted_domain) {
+			if (strpos($url,$blacklisted_domain)) {
+				// Check if a YourlsBlacklistIPs is installed and active
+				if (yourls_is_active_plugin( YOURLS_PLUGINDIR .'/BlackListIP/plugin.php' )) {
+					$IP = yourls_get_IP();
 
-			// Check if a YourlsBlacklistIPs is installed and active
-			if (yourls_is_active_plugin( YOURLS_PLUGINDIR .'/BlackListIP/plugin.php' )) {
-				// fetch the blacklisted IP addresses
-				$IP_List = yourls_get_option ('ludo_blacklist_ip_liste');
-				$IP_List = ( $IP_List ) ? ( unserialize ( $IP_List ) ):((array)NULL);
+					// IP blacklisted already?
+					ludo_blacklist_ip_root( array( $IP ) );  //  <---- dies if ip is blacklisted
 
-				// add this IP
-				$IP = yourls_get_IP();
-				$Parsed_IP = ludo_blacklist_ip_Analyze_IP ( $IP ) ;
-				if ( $Parsed_IP != "NULL" ) {
-					$IPList[] = $Parsed_IP ;
+					// fetch the blacklisted IP addresses
+					$IP_List = yourls_get_option ('ludo_blacklist_ip_liste');
+					$IP_List = ( $IP_List ) ? ( unserialize ( $IP_List ) ):((array)NULL);
+
+					// add this IP
+					$Parsed_IP = ludo_blacklist_ip_Analyze_IP ( $IP ) ;
+					if ( $Parsed_IP != "NULL" ) {
+						$IP_List[] = $Parsed_IP ;
+					}
+
+					// Update the blacklist
+					yourls_update_option ( 'ludo_blacklist_ip_liste', serialize ( $IP_List ) );
 				}
 
-				// Update the blacklist
-				yourls_update_option ( 'ludo_blacklist_ip_liste', serialize ( $IP_List ) );
+				// stop
+				//yourls_die( 'Blacklisted domain', 'Forbidden', 403 );
+				echo "<center>Blacklisted domain.</center>";
+				die();
 			}
-
-			// stop
-			//yourls_die( 'Blacklisted domain', 'Forbidden', 403 );
-			echo "<center>Blacklisted domain.</center>";
-			die();
 		}
 	}
 	return $return;
@@ -91,7 +92,7 @@ function apelly_blacklist_domain_form () {
 	$nonce = yourls_create_nonce( 'blacklist_domain' ) ;
 	$domain_list = yourls_get_option ('apelly_blacklist_domain_list','Enter domain addresses here, one per line');
 	if ($domain_list != 'Enter domain addresses here, one per line' ){
-		$domain_list_display = unserialize ( $domain_list );
+		$domain_list_display = implode ( "\r\n" , unserialize ( $domain_list ) );
 	}else{
 		$domain_list_display = $domain_list;
 	}
@@ -114,15 +115,16 @@ HTML;
 function apelly_blacklist_domain_process () {
 	// Check nonce
 	yourls_verify_nonce( 'blacklist_domain' ) ;
+
 	// Update list
-	$sent_list = serialize($_POST['blacklist_form']);
-	yourls_update_option ( 'apelly_blacklist_domain_list',$sent_list );
+	$blacklist_form = explode ( "\r\n" , $_POST['blacklist_form'] ) ;
+	yourls_update_option ( 'apelly_blacklist_domain_list', serialize($blacklist_form) );
 	echo "Black list updated. New blacklist is " ;
-	if ( count ( $IPList ) == 0 )
-		echo "sent_list.";
+	if ( count ( $blacklist_form ) == 0 )
+		echo "empty.";
 	else {
 		echo ":<BR />";
-		foreach ($sent_list as $value) echo $value."<BR />";
+		foreach ($blacklist_form as $value) echo $value."<BR />";
 	}
 }
 ?>

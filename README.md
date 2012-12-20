@@ -7,24 +7,28 @@ This plugin is intended to be used with YOURLS (cf. http://yourls.org)
 
 It has been tested on YOURLS v1.5.1 and YourlsBlacklistIPs v1.3
 
-Current version is 0.02
+Current version is 0.03
 
 Contact : *apelly[ at ]len[ dot ]io*
 
 **INSTALL :**
+
 - In user/plugins, `git clone https://github.com/apelly/YourlsBlacklistDomains.git`
 - Go to the plugins administration page and activate the plugin.
 
 **UPDATE :**
+
 - In user/plugins/YourlsBlacklistDomains, `git pull https://github.com/apelly/YourlsBlacklistDomains.git`
 
 **USAGE :**
+
 You will see in the admin section a new admin page where you can manage the blacklist.
 
 Enter one domain on each line, you may remove the www when adding a new domain, the blacklisting relies on simple substring matching.
 
 Credits
 -------
+
 Thanks to https://github.com/Panthro for YourlsWhiteListDomains which was basically all of the code for this.
 - https://github.com/Panthro/YourlsWhitelistDomains
 
@@ -33,8 +37,11 @@ Also thanks to https://github.com/LudoBoggio for the YourlsBlacklistIPs plugin w
 
 Changelog
 ---------
+
+v0.03 Fix some crap code
 v0.02 Cosmetic changes
 v0.01 Initial code
+
 ---
 
 Notice

@@ -3,7 +3,7 @@
 Plugin Name: YourlsBlackListDomains
 Plugin URI: https://github.com/apelly/YourlsBlacklistDomains
 Description: Plugin which disallows blacklisted domains and bans the submitters IP address. GPL v3
-Version: 0.02
+Version: 0.03
 Author: apelly
 Author URI: http://len.io
 */

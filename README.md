@@ -24,34 +24,36 @@ Contact : *apelly[ at ]len[ dot ]io*
 
 You will see in the admin section a new admin page where you can manage the blacklist.
 
-Enter one domain on each line, you may remove the www when adding a new domain, the blacklisting relies on simple substring matching.
+Enter one domain on each line, the blacklisting relies on simple substring matching within the whole URL.
+
+If you have [YourlsBlacklistIPs](https://github.com/LudoBoggio/YourlsBlacklistIPs) installed and activated then any IP that attempts to shorten a blacklisted URL will automatically be blacklisted by that plugin too. 
 
 Credits
 -------
 
-Thanks to https://github.com/Panthro for YourlsWhiteListDomains which was basically all of the code for this.
-- https://github.com/Panthro/YourlsWhitelistDomains
+Thanks to [Panthro](https://github.com/Panthro) for [YourlsWhiteListDomains](https://github.com/Panthro/YourlsWhitelistDomains) which was basically all of the code for this, and for kindly giving permission to puplish under GPL.  
+> You are free to fork whatever you want, that's what code is for!  
 
-Also thanks to https://github.com/LudoBoggio for the YourlsBlacklistIPs plugin which was the base for YourlsWhiteListDomains:
-- https://github.com/LudoBoggio/YourlsBlacklistIPs
+Also thanks to [LudoBoggio](https://github.com/LudoBoggio) for the [YourlsBlacklistIPs](https://github.com/LudoBoggio/YourlsBlacklistIPs) plugin which was the base for YourlsWhiteListDomains.  
 
 Changelog
 ---------
 
-v0.03 Fix some crap code
-v0.02 Cosmetic changes
-v0.01 Initial code
+v0.03 Fix some crap code  
+v0.02 Cosmetic changes  
+v0.01 Initial code  
 
 ---
 
 Notice
 ------
 
-Neither YourlsWhiteListDomains, nor YourlsBlacklistIPs are distributed with licensing or copyright details. I have contacted the authors and will ammend the following on their advice:
+Neither YourlsWhiteListDomains, nor YourlsBlacklistIPs are distributed with licensing or copyright details. [Panthro](https://github.com/Panthro) has given explicit permission to use his code. I await a response from [LudoBoggio](https://github.com/LudoBoggio) and will ammend the following on their advice:
 
 **Copyright&copy; (2012) Aaron Pelly**
 
 **License**
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or

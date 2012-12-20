@@ -1,24 +1,55 @@
-YourlsWhiteListDomains
+YourlsBlackListDomains
+======================
 
-Plugin for Yourls allowing only whitelisted domains
+Plugin for Yourls that disallows blacklisted domains. Further, if YourlsBlacklistIPs is installed it also blacklists the submitter's IP address.
 
 This plugin is intended to be used with YOURLS (cf. http://yourls.org)
 
-It has been tested on YOURLS v1.5 and v1.5.1
+It has been tested on YOURLS v1.5.1 and YourlsBlacklistIPs v1.3
 
-Current version is 1.0
+Current version is 0.01
 
-Contact : panthro[dot]rafael[at]gmail[dot]com
+Contact : *apelly[ at ]len[ dot ]io*
 
-INSTALL :
-- In /user/plugins, create a new folder named whitelist-domains
-- In this new directory, copy the plugin.php file from this repository
-- Go to the Plugins administration page and activate the plugin
+**INSTALL :**
+- In user/plugins, `git clone https://github.com/apelly/YourlsBlacklistDomains.git`
+- Go to the plugins administration page and activate the plugin.
 
-You will see in the admin section a new admin page where you can add the domain addresses to the whitelist.
+**UPDATE :**
+- In user/plugins/YourlsBlacklistDomains, `git pull https://github.com/apelly/YourlsBlacklistDomains.git`
 
-Enter one domain in each line, please, remove the www when adding a new domain, the code works on both.
+**USAGE :**
+You will see in the admin section a new admin page where you can manage the blacklist.
 
-Thanks to https://github.com/LudoBoggio for the YourlsBlacklistIPs which was the base for this one:
+Enter one domain on each line, you may remove the www when adding a new domain, the blacklisting relies on simple substring matching.
 
-https://github.com/LudoBoggio/YourlsBlacklistIPs
+Credits
+-------
+Thanks to https://github.com/Panthro for YourlsWhiteListDomains which was basically all of the code for this.
+- https://github.com/Panthro/YourlsWhitelistDomains
+
+Also thanks to https://github.com/LudoBoggio for the YourlsBlacklistIPs plugin which was the base for YourlsWhiteListDomains:
+- https://github.com/LudoBoggio/YourlsBlacklistIPs
+
+---
+
+Notice
+------
+
+Neither YourlsWhiteListDomains, nor YourlsBlacklistIPs are distributed with licensing or copyright details. I have contacted the authors and will ammend the following on their advice:
+
+**Copyright&copy; (2012) Aaron Pelly**
+
+**License**
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.

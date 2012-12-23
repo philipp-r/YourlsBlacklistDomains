@@ -40,7 +40,7 @@ Also thanks to [LudoBoggio](https://github.com/LudoBoggio) for the [YourlsBlackl
 Changelog
 ---------
 
-v0.03 Fix some crap code  
+v0.03 Fix some crap code (of mine)  
 v0.02 Cosmetic changes  
 v0.01 Initial code  
 
@@ -49,7 +49,7 @@ v0.01 Initial code
 Notice
 ------
 
-Neither YourlsWhiteListDomains, nor YourlsBlacklistIPs are distributed with licensing or copyright details but both [Panthro](https://github.com/Panthro) and [LudoBoggio](https://github.com/LudoBoggio) have given explicit permission to use their code.
+Neither YourlsWhiteListDomains, nor YourlsBlacklistIPs are distributed with licensing or copyright details but both [Panthro](https://github.com/Panthro) and [LudoBoggio](https://github.com/LudoBoggio) have given explicit permission to use and distribute their code.
 
 **Copyright&copy; (2012) Aaron Pelly**
 

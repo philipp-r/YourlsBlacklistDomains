@@ -35,6 +35,7 @@ Thanks to [Panthro](https://github.com/Panthro) for [YourlsWhiteListDomains](htt
 > You are free to fork whatever you want, that's what code is for!  
 
 Also thanks to [LudoBoggio](https://github.com/LudoBoggio) for the [YourlsBlacklistIPs](https://github.com/LudoBoggio/YourlsBlacklistIPs) plugin which was the base for YourlsWhiteListDomains.  
+>I've written this plugin for the community, to help Yourls users, to help Yourls author, to help to spread this software, to pay my free use of it, and to learn a bit more of programming. I didn't provide any license informations because I never tried to understand them. Therefore, I leave you all rights to use my plugin in any way you want, the fact that it help to bring more Yourls user is just enough from my point of view.
 
 Changelog
 ---------
@@ -48,7 +49,7 @@ v0.01 Initial code
 Notice
 ------
 
-Neither YourlsWhiteListDomains, nor YourlsBlacklistIPs are distributed with licensing or copyright details. [Panthro](https://github.com/Panthro) has given explicit permission to use his code. I await a response from [LudoBoggio](https://github.com/LudoBoggio) and will ammend the following on their advice:
+Neither YourlsWhiteListDomains, nor YourlsBlacklistIPs are distributed with licensing or copyright details but both [Panthro](https://github.com/Panthro) and [LudoBoggio](https://github.com/LudoBoggio) have given explicit permission to use their code.
 
 **Copyright&copy; (2012) Aaron Pelly**
 

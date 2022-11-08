@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: YourlsBlackListDomains
-Plugin URI: https://github.com/apelly/YourlsBlacklistDomains
-Description: Plugin which disallows blacklisted domains and bans the submitters IP address. GPL v3
-Version: 0.03
+Plugin URI: https://github.com/philipp-r/YourlsBlacklistDomains/tree/slim
+Description: Plugin which disallows blacklisted domains
+Version: 0.04
 Author: apelly
 Author URI: http://len.io
 */
@@ -42,27 +42,6 @@ function apelly_blacklist_domain_root ( $bol, $url ) {
 		$domain_list = unserialize ( $domain_list );
 		foreach($domain_list as $blacklisted_domain) {
 			if (strpos($url,$blacklisted_domain)) {
-				// Check if a YourlsBlacklistIPs is installed and active
-				if (yourls_is_active_plugin( YOURLS_PLUGINDIR .'/BlackListIP/plugin.php' )) {
-					$IP = yourls_get_IP();
-
-					// IP blacklisted already?
-					ludo_blacklist_ip_root( array( $IP ) );  //  <---- dies if ip is blacklisted
-
-					// fetch the blacklisted IP addresses
-					$IP_List = yourls_get_option ('ludo_blacklist_ip_liste');
-					$IP_List = ( $IP_List ) ? ( unserialize ( $IP_List ) ):((array)NULL);
-
-					// add this IP
-					$Parsed_IP = ludo_blacklist_ip_Analyze_IP ( $IP ) ;
-					if ( $Parsed_IP != "NULL" ) {
-						$IP_List[] = $Parsed_IP ;
-					}
-
-					// Update the blacklist
-					yourls_update_option ( 'ludo_blacklist_ip_liste', serialize ( $IP_List ) );
-				}
-
 				// stop
 				//yourls_die( 'Blacklisted domain', 'Forbidden', 403 );
 				return array(
@@ -103,13 +82,10 @@ function apelly_blacklist_domain_form () {
 	echo <<<HTML
 		<h2>BlackList domains</h2>
 		<form method="post">
-
 		<input type="hidden" name="action" value="blacklist_domain" />
 		<input type="hidden" name="nonce" value="$nonce" />
-
 		<p>Blacklist following domains</p>
 		<p><textarea cols="60" rows="15" name="blacklist_form">$domain_list_display</textarea></p>
-
 		<p><input type="submit" value="Save" /></p>
 		</form>
 HTML;

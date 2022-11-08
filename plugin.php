@@ -65,8 +65,12 @@ function apelly_blacklist_domain_root ( $bol, $url ) {
 
 				// stop
 				//yourls_die( 'Blacklisted domain', 'Forbidden', 403 );
-				echo "<center>Blacklisted domain.</center>";
-				die();
+				return array(
+					'status' => 'fail',
+					'code'   => 'error:url',
+					'message' => 'Blacklisted domain',
+					'errorCode' => '403',
+				);
 			}
 		}
 	}
@@ -99,13 +103,13 @@ function apelly_blacklist_domain_form () {
 	echo <<<HTML
 		<h2>BlackList domains</h2>
 		<form method="post">
-		
+
 		<input type="hidden" name="action" value="blacklist_domain" />
 		<input type="hidden" name="nonce" value="$nonce" />
-		
+
 		<p>Blacklist following domains</p>
 		<p><textarea cols="60" rows="15" name="blacklist_form">$domain_list_display</textarea></p>
-		
+
 		<p><input type="submit" value="Save" /></p>
 		</form>
 HTML;
